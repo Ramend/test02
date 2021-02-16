@@ -66,12 +66,14 @@ export default {
     }
   },
   methods: {
+    // 点击重置按钮，重置登录表单
     resetLoginForm () {
       this.$refs.loginFormRef.resetFields()
     },
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
+        // data: res  data重命名为res
         const { data: res } = await this.$http.post('login', this.loginForm)
         if (res.meta.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
